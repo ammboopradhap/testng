@@ -1,4 +1,4 @@
-FROM node:15.12.0 as node
+FROM node:alpine
 
 RUN NODE_OPTIONS=--max_old_space_size=4096
 
