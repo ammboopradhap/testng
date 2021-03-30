@@ -1,10 +1,11 @@
+# Specify a base image
 FROM node:alpine
 
-RUN NODE_OPTIONS=--max_old_space_size=4096
+#Install some dependencies
 
-# # Run tests
-# WORKDIR /usr/app
-
-# COPY ./package.json ./package-lock.json /app/
+WORKDIR /usr/app
+COPY ./ /usr/app
 RUN npm install
-RUN npm run build
+
+# Set up a default command
+CMD [ "npm","start" ]
