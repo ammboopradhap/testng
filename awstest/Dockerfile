@@ -1,11 +1,6 @@
-# Specify a base image
-FROM node:alpine
-
-#Install some dependencies
-
-WORKDIR /usr/app
-COPY ./ /usr/app
+FROM node:12.7-alpine AS build
+WORKDIR /usr/src/app
+COPY package.json package-lock.json ./
 RUN npm install
-
-# Set up a default command
-CMD [ "npm","start" ]
+COPY . .
+RUN npm run build
