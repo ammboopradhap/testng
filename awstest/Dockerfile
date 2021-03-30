@@ -1,6 +1,11 @@
-FROM node:12.7-alpine AS build
-WORKDIR /usr
-COPY package.json package-lock.json ./
+FROM node:alpine
+
+RUN NODE_OPTIONS=--max_old_space_size=4096
+
+# Run tests
+WORKDIR /usr/app
+COPY ./ /usr/app
 RUN npm install
-COPY . .
+
+# Build the app
 RUN npm run build
